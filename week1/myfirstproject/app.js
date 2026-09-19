@@ -9,3 +9,4 @@ console.log(getPerfectNumber());
 
 // Do not edit/remove code under this line
 module.exports = getPerfectNumber;
+
