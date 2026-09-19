@@ -1,0 +1,9 @@
+{
+  "name": "skyisthelimit",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "jest": "^28.0.3",
+    "jsdom": "^19.0.0"
+  }
+}
