@@ -2,7 +2,6 @@
   "files.exclude": {
     ".ariane": true,
     ".vscode": true,
-    "**/.gitkeep": true
-  },
-  "git.mergeEditor": false
+    "**/.gitkeep": true,
+  }
 }
