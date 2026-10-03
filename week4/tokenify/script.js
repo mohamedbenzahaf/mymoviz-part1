@@ -1,6 +1,9 @@
 const searchBar = document.getElementById("creatorSearchBar");
 const creatorsList = document.getElementById("creatorsList");
-
+const creatorSearchButton = document.createElement("button");
+creatorSearchButton.id = "creatorSearchButton";
+creatorSearchButton.textContent = "Search";
+searchBar.parentElement.appendChild(creatorSearchButton);
 
 const clientId = "mmu9gzrlixpzh8lt5n1lnjauqm19a4";
 const clientSecret = "8zbkqw5i0757pcjpuf7dmmyc8oxog0";
@@ -58,15 +61,46 @@ async function getClips(broadcasterId) {
 
   return data.data;
 }
-searchBar.addEventListener("keydown", async (event) => {
-  if (event.key === "Enter") {
-    const creatorName = searchBar.value.trim();
-    if (!creatorName) {
-  creatorsList.innerHTML = `
-    <p id="error">Creator not found</p>
-  `;
-  return;
+async function search() {
+  const creatorName = searchBar.value.trim();
+
+  if (!creatorName) {
+    creatorsList.innerHTML = `
+      <p id="error">Creator not found</p>
+    `;
+    return;
+  }
+  creatorSearchButton.addEventListener("click", search);
+
+  const creator = await searchCreator(creatorName);
+
+  if (!creator) {
+    creatorsList.innerHTML = `
+      <p id="error">Creator not found</p>
+    `;
+    return;
+  }
+
+  const clips = await getClips(creator.id);
+
+  creatorsList.innerHTML = "";
+
+  clips.forEach((clip) => {
+    creatorsList.innerHTML += `
+      <div class="clip-item">
+        <a href="${clip.url}" target="_blank">
+          <img src="${clip.thumbnail_url}" alt="${clip.title}">
+        </a>
+        <h2>${clip.title}</h2>
+      </div>
+    `;
+  });
 }
+searchBar.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    search();
+  }
+});
 
     const creator = await searchCreator(creatorName);
     if (!creator) {
