@@ -23,8 +23,8 @@ async function searchCreator(creatorName) {
   const accessToken = await getAccessToken();
 
   const response = await fetch(
-    `https://api.twitch.tv/helix/users?login=${creatorName}`,
-    {
+  `https://api.twitch.tv/helix/search/channels?query=${creatorName}&first=1`,
+  {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Client-Id": clientId,
