@@ -1,5 +1,9 @@
 const searchBar = document.getElementById("creatorSearchBar");
 const creatorsList = document.getElementById("creatorsList");
+const creatorSearchButton = document.createElement("button");
+creatorSearchButton.id = "creatorSearchButton";
+creatorSearchButton.textContent = "Search";
+searchBar.parentElement.appendChild(creatorSearchButton);
 
 const clientId = "mmu9gzrlixpzh8lt5n1lnjauqm19a4";
 const clientSecret = "8zbkqw5i0757pcjpuf7dmmyc8oxog0";
@@ -23,8 +27,8 @@ async function searchCreator(creatorName) {
   const accessToken = await getAccessToken();
 
   const response = await fetch(
-  `https://api.twitch.tv/helix/search/channels?query=${creatorName}&first=1`,
-  {
+    `https://api.twitch.tv/helix/users?login=${creatorName}`,
+    {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Client-Id": clientId,
