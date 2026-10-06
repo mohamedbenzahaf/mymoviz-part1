@@ -3,11 +3,13 @@ const db = require('./database/setup'); // Do not edit/remove this line
 
 // Create todo with name and priority (done = false by default)
 function createTodo(name, priority) {
-  return db.create({
+  const todo = new db({
     name: name,
     priority: priority,
     done: false,
   });
+
+  return todo.save();
 }
 
 
