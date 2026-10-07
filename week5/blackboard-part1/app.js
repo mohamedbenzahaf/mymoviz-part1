@@ -1,22 +1,38 @@
 const db = require('./database/setup'); // Do not edit/remove this line
 
 
-function displayAllArticles() {}
+function displayAllArticles() {
+    return db.find();
+}
 
 
-function displayArticleByName(articleName) {}
+function displayArticleByName(articleName) {
+    return db.findOne({ name: articleName });
+}
 
 
-function displayArticleByID(articleId) {}
+function displayArticleByID(articleId) {
+    return db.findById(articleId);
+}
 
 
-function updateArticlePrice(articleId, newPrice) {}
+function updateArticlePrice(articleId, newPrice) {
+    return db.updateOne(
+        { _id: articleId },
+        { price: newPrice }
+    );
+}
 
+function updateArticleStock(articleId, newStock) {
+    return db.updateOne(
+        { _id: articleId },
+        { stock: newStock }
+    );
+}
 
-function updateArticleStock(articleId, newStock) {}
-
-
-function resetStocks() {}
+function resetStocks() {
+    return db.updateMany({}, { stock: 0 });
+}
 
 
 // Do not edit/remove code under this line
