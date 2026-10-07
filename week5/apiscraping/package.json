@@ -1,0 +1,14 @@
+{
+  "name": "apiscraping",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "node-fetch": "2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
