@@ -3,9 +3,11 @@ const db = require('./database/setup');
 // Do not edit/remove code above this line
 
 // Insert your code here
-fetch('https://fruityvice.com/api/fruit/all')
-  .then(response => response.json())
-  .then(data => {
+async function scrapeFruits() {
+  try {
+    const response = await fetch('https://fruityvice.com/api/fruit/all');
+    const data = await response.json();
+
     const fruits = data.map(fruit => ({
       name: fruit.name,
       family: fruit.family,
@@ -16,8 +18,14 @@ fetch('https://fruityvice.com/api/fruit/all')
       sugar: fruit.nutritions.sugar
     }));
 
-    db.deleteMany({})
-  .then(() => db.insertMany(fruits))
-  .then(() => console.log('Fruits inserted:', fruits.length))
-  .catch(error => console.error(error));
-  });
+    await db.deleteMany({});
+    await db.insertMany(fruits);
+
+    console.log('Fruits inserted:', fruits.length);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+scrapeFruits();
+
