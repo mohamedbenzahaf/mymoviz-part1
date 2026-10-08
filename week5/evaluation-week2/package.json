@@ -1,0 +1,14 @@
+{
+    "name": "evaluation-week2",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "fs": "^0.0.1-security",
+        "jest": "^29.4.1",
+        "jest-environment-jsdom": "^29.4.1",
+        "jsdom": "^21.1.0",
+        "node-fetch": "2",
+        "path": "^0.12.7",
+        "util": "^0.12.5"
+    }
+}
