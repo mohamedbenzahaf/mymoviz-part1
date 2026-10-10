@@ -1,4 +1,8 @@
-// Add your own requires here 😉
+require('./models/connection');
+
+const Article = require('./models/Article');
+const User = require('./models/User');
+const Order = require('./models/Order');
 
 /*
 ** Articles
@@ -45,20 +49,40 @@ function resetStocks() {
 ** Users
 */
 
-function displayAllUsers() { }
+function displayAllUsers() {
+	User.find().then(data => {
+        console.log('USERS =>', data);
+    });
+ }
 
-function deleteUser(userId) { }
+function deleteUser(userId) {
+	User.deleteOne({ _id: userId }).then(() => {
+        console.log(`User deleted: ${userId}`);
+    });
+ }
 
 
 /*
 ** Orders
 */
 
-function displayAllOrders() { }
+function displayAllOrders() {
+	Order.find().then(data => {
+        console.log('ORDERS =>', data);
+    });
+ }
 
-function updateOrderPaymentStatus(orderId, isPaid) { }
+function updateOrderPaymentStatus(orderId, isPaid) { 
+	Order.updateOne({ _id: orderId }, { isPaid: isPaid }).then(() => {
+        console.log(`Payment status updated for ${orderId}`);
+    });
+}
 
-function deleteOrder(orderId) { }
+function deleteOrder(orderId) {
+	Order.deleteOne({ _id: orderId }).then(() => {
+        console.log(`Order deleted: ${orderId}`);
+    });
+ }
 
 
 // Do not edit/remove code under this line
