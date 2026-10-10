@@ -1,0 +1,74 @@
+[
+	{
+		"total": 149,
+		"shippingFees": 15,
+		"isPaid": true,
+		"purchaseDate": {
+			"$date": "2019-07-24T08:24:19.137Z"
+		}
+	},
+	{
+		"total": 299,
+		"shippingFees": 15,
+		"isPaid": true,
+		"purchaseDate": {
+			"$date": "2020-10-26T08:24:19.137Z"
+		}
+	},
+	{
+		"total": 869,
+		"shippingFees": 5,
+		"isPaid": false,
+		"purchaseDate": {
+			"$date": "2019-08-01T12:24:19.137Z"
+		}
+	},
+	{
+		"total": 95,
+		"shippingFees": 15,
+		"isPaid": false,
+		"purchaseDate": {
+			"$date": "2022-03-15T22:30:19.137Z"
+		}
+	},
+	{
+		"total": 1789,
+		"shippingFees": 5,
+		"isPaid": false,
+		"purchaseDate": {
+			"$date": "2021-11-11T11:11:11.137Z"
+		}
+	},
+	{
+		"total": 399,
+		"shippingFees": 5,
+		"isPaid": false,
+		"purchaseDate": {
+			"$date": "2022-02-14T10:29:39.137Z"
+		}
+	},
+	{
+		"total": 259,
+		"shippingFees": 15,
+		"isPaid": true,
+		"purchaseDate": {
+			"$date": "2022-04-02T12:12:12.137Z"
+		}
+	},
+	{
+		"total": 1100,
+		"shippingFees": 5,
+		"isPaid": false,
+		"purchaseDate": {
+			"$date": "2018-08-22T22:22:19.137Z"
+		}
+	},
+	{
+		"total": 110,
+		"shippingFees": 15,
+		"isPaid": false,
+		"purchaseDate": {
+			"$date": "2018-06-20T10:10:10.137Z"
+		}
+	}
+]

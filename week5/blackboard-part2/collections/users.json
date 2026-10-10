@@ -1,0 +1,74 @@
+[
+	{
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john@doe.com",
+		"inscriptionDate": {
+			"$date": "2019-07-24T08:24:19.137Z"
+		}
+	},
+	{
+		"firstName": "Vanessa",
+		"lastName": "Doe",
+		"email": "vanessa@doe.com",
+		"inscriptionDate": {
+			"$date": "2020-10-26T08:24:19.137Z"
+		}
+	},
+	{
+		"firstName": "Mister",
+		"lastName": "Awesome",
+		"email": "mister@awesome.com",
+		"inscriptionDate": {
+			"$date": "2019-08-01T12:24:19.137Z"
+		}
+	},
+	{
+		"firstName": "Miss",
+		"lastName": "Awesome",
+		"email": "miss@awesome.com",
+		"inscriptionDate": {
+			"$date": "2022-03-15T22:30:19.137Z"
+		}
+	},
+	{
+		"firstName": "Ryan",
+		"lastName": "Broadnax",
+		"email": "ryan@broadnax.com",
+		"inscriptionDate": {
+			"$date": "2021-11-11T11:11:11.137Z"
+		}
+	},
+	{
+		"firstName": "Meredith",
+		"lastName": "Robinson",
+		"email": "meredith@robinson.com",
+		"inscriptionDate": {
+			"$date": "2022-02-14T10:29:39.137Z"
+		}
+	},
+	{
+		"firstName": "Amy",
+		"lastName": "Bingham",
+		"email": "amy@bingham.com",
+		"inscriptionDate": {
+			"$date": "2022-04-02T12:12:12.137Z"
+		}
+	},
+	{
+		"firstName": "James",
+		"lastName": "Thomas",
+		"email": "james@thomas.com",
+		"inscriptionDate": {
+			"$date": "2018-08-22T22:22:19.137Z"
+		}
+	},
+	{
+		"firstName": "Austin",
+		"lastName": "Henry",
+		"email": "austin@henry.com",
+		"inscriptionDate": {
+			"$date": "2018-06-20T10:10:10.137Z"
+		}
+	}
+]
