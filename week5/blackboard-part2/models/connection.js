@@ -6,5 +6,5 @@ const connectionString = 'mongodb+srv://mohamedbenzahaf01_db_user:Toulouse31@bla
 mongoose.connect(connectionString, {
   connectTimeoutMS: 2000,
 })
-  .then(() => console.log('Database connected'))
+  .then(() => console.log("Database connected"))
   .catch(error => console.error(error));

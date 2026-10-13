@@ -1,8 +1,8 @@
-require('./models/connection');
+require("./models/connection");
 
-const Article = require('./models/Article');
-const User = require('./models/User');
-const Order = require('./models/Order');
+const Article = require("./models/Articles");
+const User = require("./models/Users");
+const Order = require("./models/Orders");
 
 /*
 ** Articles
@@ -44,6 +44,13 @@ function resetStocks() {
 	});
 }
 
+// displayAllArticles();
+// displayArticleByName("NKD");
+// displayArticleByID("625ea9ca38d6a3776994651d");
+// updateArticlePrice("625ea9ca38d6a3776994651d", 3000);
+// updateArticleStock("625ea9ca38d6a3776994651d", 612);
+// resetStocks();
+
 
 /*
 ** Users
@@ -55,12 +62,15 @@ function displayAllUsers() {
     });
  }
 
+//  displayAllUsers();
+
 function deleteUser(userId) {
 	User.deleteOne({ _id: userId }).then(() => {
-        console.log(`User deleted: ${userId}`);
+        console.log(`User ${userId} successfully deleted`);
     });
  }
 
+//  deleteUser("625ea9ca38d6a3776994651d")
 
 /*
 ** Orders
@@ -72,18 +82,23 @@ function displayAllOrders() {
     });
  }
 
-function updateOrderPaymentStatus(orderId, isPaid) { 
-	Order.updateOne({ _id: orderId }, { isPaid: isPaid }).then(() => {
-        console.log(`Payment status updated for ${orderId}`);
+//  displayAllOrders();
+
+function updateOrderPayment(orderId, isPaid) {
+    Order.updateOne({ _id: orderId }, { isPaid }).then(() => {
+        console.log(`Order ${orderId} payment status successfully updated`);
     });
 }
 
+// updateOrderPaymentStatus("625ea9ca38d6a37769946513", true);
+
 function deleteOrder(orderId) {
 	Order.deleteOne({ _id: orderId }).then(() => {
-        console.log(`Order deleted: ${orderId}`);
+        console.log(`Order ${orderId} successfully deleted`);
     });
  }
 
+ deleteOrder("625ea9ca38d6a37769946513");
 
 // Do not edit/remove code under this line
 module.exports = {
@@ -96,6 +111,6 @@ module.exports = {
 	displayAllUsers,
 	deleteUser,
 	displayAllOrders,
-	updateOrderPaymentStatus,
+	updateOrderPayment,
 	deleteOrder,
 };
