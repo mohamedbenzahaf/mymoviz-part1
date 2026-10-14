@@ -1,11 +1,11 @@
 {
-	"name": "cleanmycode",
-	"version": "1.0.0",
-	"private": true,
-	"scripts": {
-		"start": "node app.js"
-	},
-	"devDependencies": {
-		"jest": "^28.0.1"
-	}
+  "name": "letsmodelize",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "mongoose": "^8.4.3"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
 }
