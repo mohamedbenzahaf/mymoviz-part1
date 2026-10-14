@@ -13,7 +13,7 @@ const countriesSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  population: {
+  population: [{
     populationNbr: {
       type: Number,
       required: true
@@ -22,7 +22,8 @@ const countriesSchema = new mongoose.Schema({
       type: Date,
       required: true
     }
-  }
+  }]
 });
 
 module.exports = mongoose.model('Country', countriesSchema);
+
