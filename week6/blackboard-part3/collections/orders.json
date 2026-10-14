@@ -1,0 +1,200 @@
+[
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946511"
+        },
+        "total": 485,
+        "shippingFees": 5,
+        "purchaseDate": {
+            "$date": "2019-07-24T08:24:19.137Z"
+        },
+        "user": {
+            "$oid": "625ea9ca38d6a3776994651a"
+        },
+        "isPaid": true,
+        "articles": [
+            {
+                "$oid": "625ea9ca38d6a3276994651c"
+            },
+            {
+                "$oid": "625ea9ca38d6a3776994651d"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946512"
+        },
+        "total": 43,
+        "shippingFees": 15,
+        "purchaseDate": {
+            "$date": "2020-10-26T08:24:19.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "925ea9ca38d6a3776994651e"
+            },
+            {
+                "$oid": "115ea9ca38d6a3776994651e"
+            },
+            {
+                "$oid": "825ea9ca38d6a3776994651e"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3776994651b"
+        },
+        "isPaid": true
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946513"
+        },
+        "total": 438,
+        "shippingFees": 5,
+        "purchaseDate": {
+            "$date": "2019-08-01T12:24:19.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "725ea9ca38d6a3776994651e"
+            },
+            {
+                "$oid": "825ea9ca38d6a3776994651e"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3776994651c"
+        },
+        "isPaid": true
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946524"
+        },
+        "total": 95,
+        "shippingFees": 15,
+        "purchaseDate": {
+            "$date": "2022-03-15T22:30:19.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "125ea9ca38d6a3776994651e"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3776994652b"
+        },
+        "isPaid": false
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946515"
+        },
+        "total": 1128,
+        "shippingFees": 5,
+        "purchaseDate": {
+            "$date": "2021-11-11T11:11:11.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "425ea9ca38d6a3776994651e"
+            },
+            {
+                "$oid": "625ea9ca38d6a3776994651f"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3776994652d"
+        },
+        "isPaid": false
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946516"
+        },
+        "total": 1817,
+        "shippingFees": 5,
+        "purchaseDate": {
+            "$date": "2022-02-14T10:29:39.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "625ea9ca38d6a37769946520"
+            },
+            {
+                "$oid": "625ea9ca38d6a3776994651e"
+            },
+            {
+                "$oid": "325ea9ca38d6a3776994651e"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3775994651b"
+        },
+        "isPaid": false
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946517"
+        },
+        "total": 1389,
+        "shippingFees": 5,
+        "purchaseDate": {
+            "$date": "2022-04-02T12:12:12.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "105ea9ca38d6a3776994651e"
+            },
+            {
+                "$oid": "525ea9ca38d6a3776994651e"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3776994641b"
+        },
+        "isPaid": true
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946518"
+        },
+        "total": 117,
+        "shippingFees": 15,
+        "purchaseDate": {
+            "$date": "2018-08-22T22:22:19.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "825ea9ca38d6a3776994651e"
+            },
+            {
+                "$oid": "325ea9ca38d6a3776994651e"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3776995651b"
+        },
+        "isPaid": false
+    },
+    {
+        "_id": {
+            "$oid": "625ea9ca38d6a37769946519"
+        },
+        "total": 1590,
+        "shippingFees": 5,
+        "purchaseDate": {
+            "$date": "2018-06-20T10:10:10.137Z"
+        },
+        "articles": [
+            {
+                "$oid": "625ea9ca38d6a37769946520"
+            }
+        ],
+        "user": {
+            "$oid": "625ea9ca38d6a3776994951b"
+        },
+        "isPaid": false
+    }
+]

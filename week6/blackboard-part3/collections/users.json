@@ -1,0 +1,227 @@
+[
+  {
+    "_id": {
+      "$oid": "635fd26df0f6e522704fd6f5"
+    },
+    "firstName": "Meredith",
+    "lastName": "Robinson",
+    "email": "meredith@robinson.com",
+    "inscriptionDate": {
+      "$date": "2022-02-14T10:29:39.137Z"
+    },
+    "addresses": [
+      {
+        "street": "9401 Glen Creek St.",
+        "city": "Strongsville",
+        "zipCode": "OH 44136",
+        "isFavourite": true
+      },
+      {
+        "street": "56 Inverness Dr.",
+        "city": "Sevierville",
+        "zipCode": "TN 37876",
+        "isFavourite": false
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "635fd27cf0f6e522704fd6f6"
+    },
+    "firstName": "Amy",
+    "lastName": "Bingham",
+    "email": "amy@bingham.com",
+    "inscriptionDate": {
+      "$date": "2022-04-02T12:12:12.137Z"
+    },
+    "addresses": [
+      {
+        "street": "8891 Pineknoll Rd.",
+        "city": "Clifton Park",
+        "zipCode": "NY 12065",
+        "isFavourite": true
+      },
+      {
+        "street": "8420 San Juan Ave.",
+        "city": "Davenport",
+        "zipCode": "IA 52804",
+        "isFavourite": false
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "635fd289f0f6e522704fd6f7"
+    },
+    "firstName": "James",
+    "lastName": "Thomas",
+    "email": "james@thomas.com",
+    "inscriptionDate": {
+      "$date": "2018-08-22T22:22:19.137Z"
+    },
+    "addresses": [
+      {
+        "street": "108 N. Ramblewood Street",
+        "city": "Clifton Park",
+        "zipCode": "NY 12065",
+        "isFavourite": true
+      },
+      {
+        "street": "235 Pierce Dr.",
+        "city": "Davenport",
+        "zipCode": "IA 52804",
+        "isFavourite": false
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "635fd297f0f6e522704fd6f8"
+    },
+    "firstName": "Austin",
+    "lastName": "Henry",
+    "email": "austin@henry.com",
+    "inscriptionDate": {
+      "$date": "2018-06-20T10:10:10.137Z"
+    },
+    "addresses": [
+      {
+        "street": "9025 Iroquois Ave.",
+        "city": "Levittown",
+        "zipCode": "NY 11756",
+        "isFavourite": true
+      },
+      {
+        "street": "7749 Littleton Court",
+        "city": "Lebanon",
+        "zipCode": "PA 17042",
+        "isFavourite": false
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "625ea9ca38d6a3776994651a"
+    },
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@doe.com",
+    "inscriptionDate": {
+      "$date": "2019-07-24T08:24:19.137Z"
+    },
+    "addresses": [
+      {
+        "street": "19 Riverview Dr.",
+        "city": "Marcus Hook",
+        "zipCode": "PA 19061",
+        "isFavourite": true
+      },
+      {
+        "street": "270 Lakewood Avenue",
+        "city": "Port Jefferson Station",
+        "zipCode": "NY 11776",
+        "isFavourite": false
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "625ea9ca38d6a3776994651b"
+    },
+    "firstName": "Vanessa",
+    "lastName": "Doe",
+    "email": "vanessa@doe.com",
+    "inscriptionDate": {
+      "$date": "2020-10-26T08:24:19.137Z"
+    },
+    "addresses": [
+      {
+        "street": "45 Maiden Dr.",
+        "city": "Baldwin",
+        "zipCode": "NY 11510",
+        "isFavourite": false
+      },
+      {
+        "street": "5 E. Ketch Harbour Ave.",
+        "city": "Marshfield",
+        "zipCode": "WI 54449",
+        "isFavourite": true
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "625ea9ca38d6a3776994651c"
+    },
+    "firstName": "Mister",
+    "lastName": "Awesome",
+    "email": "mister@awesome.com",
+    "inscriptionDate": {
+      "$date": "2019-08-01T12:24:19.137Z"
+    },
+    "addresses": [
+      {
+        "street": "1 Augusta Drive",
+        "city": "Indian Trail",
+        "zipCode": "NC 28079",
+        "isFavourite": false
+      },
+      {
+        "street": "157 Elmwood Road",
+        "city": "Jamaica Plain",
+        "zipCode": "MA 02130",
+        "isFavourite": true
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "625ea9ca38d6a3776994652d"
+    },
+    "firstName": "Miss",
+    "lastName": "Awesome",
+    "email": "miss@awesome.com",
+    "inscriptionDate": {
+      "$date": "2022-03-15T22:30:19.137Z"
+    },
+    "addresses": [
+      {
+        "street": "8978 Princeton Ave.",
+        "city": "Wake Forest",
+        "zipCode": "NC 27587",
+        "isFavourite": false
+      },
+      {
+        "street": "52 Foster Street",
+        "city": "Reno",
+        "zipCode": "NV 89523",
+        "isFavourite": true
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "625ea9ca38d6a3776994651e"
+    },
+    "firstName": "Ryan",
+    "lastName": "Broadnax",
+    "email": "ryan@broadnax.com",
+    "inscriptionDate": {
+      "$date": "2022-03-15T22:30:19.137Z"
+    },
+    "addresses": [
+      {
+        "street": "8711 Bayberry St.",
+        "city": "Strongsville",
+        "zipCode": "OH 44136",
+        "isFavourite": true
+      },
+      {
+        "street": "7022 Prince St.",
+        "city": "Sevierville",
+        "zipCode": "TN 37876",
+        "isFavourite": false
+      }
+    ]
+  }
+]
