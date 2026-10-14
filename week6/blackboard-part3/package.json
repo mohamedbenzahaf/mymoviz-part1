@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "ervy": "^1.0.7",
     "mongoose": "^6.3.0"
   },
   "devDependencies": {
