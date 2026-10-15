@@ -10,26 +10,44 @@ displayPokemons();
 
 //! Create a new pokemon in database
 function createPokemon(pokemonName, typeName, typeColor) {
-  // Write your code here
+  Pokemon.create({
+    name: pokemonName,
+    types: [{ name: typeName, color: typeColor }]
+  }).then(() => {
+    console.log(`${pokemonName} created`);
+  });
 }
-// createPokemon('pikachu', 'electric', 'yellow')
 
 //! Add a sub-document/sub-object to an array
 function addType(pokemonName, typeName, typeColor) {
-  // Write your code here
+  Pokemon.updateOne(
+    { name: pokemonName },
+    { $push: { types: { name: typeName, color: typeColor } } }
+  ).then(() => {
+    console.log(`Type ${typeName} added to ${pokemonName}`);
+  });
 }
-// addType('pikachu', 'rock', 'brown')
 
 //! Update type in "pokemon" collection
 function updateType(typeName, typeColor) {
-  // Write your code here
+  Pokemon.updateOne(
+    { types: { $elemMatch: { name: typeName } } },
+    { $set: { "types.$.color": typeColor } }
+  ).then(() => {
+    console.log(`Type ${typeName} updated`);
+  });
 }
-// updateType('rock', 'grey')
 
 //! Delete type from "pokemon" collection
 function deleteType(typeName) {
-  // Write your code here
+  Pokemon.updateMany(
+    {},
+    { $pull: { types: { name: typeName } } }
+  ).then(() => {
+    console.log(`Type ${typeName} deleted`);
+  });
 }
+
 // deleteType('rock')
 
 // Do not edit/remove the code below this line !
