@@ -15,12 +15,12 @@ app.use(cors());
 const apiKeys = ['azerty123', 'supersecretapikey'];
 
 app.use((req, res, next) => {
-  const apiKey = req.headers['x-api-key'] || req.headers['api-key'];
+  const apiKey = req.headers['api-key'];
 
   if (!apiKeys.includes(apiKey)) {
     return res.status(403).json({
       result: false,
-      message: 'Invalid API key',
+      error: 'Invalid API key',
     });
   }
 
