@@ -15,17 +15,21 @@ app.use(cors());
 const apiKeys = ['azerty123', 'supersecretapikey'];
 
 app.use((req, res, next) => {
-  const apiKey = req.headers['api-key'];
+  const apiKey =
+    req.headers['api-key'] ||
+    req.headers['x-api-key'] ||
+    req.headers['apikey'] ||
+    req.headers['authorization'];
 
-  if (!apiKeys.includes(apiKey)) {
+  const normalizedKey = apiKey?.startsWith('Bearer ')
+    ? apiKey.slice(7)
+    : apiKey;
+
+  if (!apiKeys.includes(normalizedKey)) {
     return res.status(403).json({
       result: false,
       error: 'Invalid API key',
     });
-  }
-
-  next();
-});
 
 app.use(logger('dev'));
 app.use(express.json());
