@@ -1,3 +1,4 @@
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -10,8 +11,7 @@ var app = express();
 const cors = require('cors');
 app.use(cors());
 
-// authorization middleware
-
+// Authorization middleware
 const apiKeys = ['azerty123', 'supersecretapikey'];
 
 app.use((req, res, next) => {
@@ -30,6 +30,10 @@ app.use((req, res, next) => {
       result: false,
       error: 'Invalid API key',
     });
+  }
+
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
