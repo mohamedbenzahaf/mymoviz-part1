@@ -11,7 +11,21 @@ const cors = require('cors');
 app.use(cors());
 
 // authorization middleware
+
 const apiKeys = ['azerty123', 'supersecretapikey'];
+
+app.use((req, res, next) => {
+  const apiKey = req.headers['x-api-key'];
+
+  if (!apiKeys.includes(apiKey)) {
+    return res.status(403).json({
+      result: false,
+      message: 'Invalid API key',
+    });
+  }
+
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
