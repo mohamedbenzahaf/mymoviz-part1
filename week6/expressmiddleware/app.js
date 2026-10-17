@@ -1,4 +1,3 @@
-
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -11,25 +10,18 @@ var app = express();
 const cors = require('cors');
 app.use(cors());
 
-// Authorization middleware
+// authorization middleware
+
 const apiKeys = ['azerty123', 'supersecretapikey'];
 
 app.use((req, res, next) => {
-  const apiKey =
-    req.headers['api-key'] ||
-    req.headers['x-api-key'] ||
-    req.headers['apikey'] ||
-    req.headers['authorization'];
+  const apiKey = req.headers['key'];
 
-  const normalizedKey = apiKey?.startsWith('Bearer ')
-    ? apiKey.slice(7)
-    : apiKey;
-
-  if (!apiKeys.includes(normalizedKey)) {
+  if (!apiKeys.includes(apiKey)) {
     return res.status(403).json({
-      result: false,
-      error: 'Invalid API key',
-    });
+  result: false,
+  message: 'Invalid API key',
+});
   }
 
   next();
