@@ -30,8 +30,8 @@ router.get('/trips', async (req, res) => {
 // Récupérer les trajets
 router.get('/lastTrip', async (req, res) => {
   try {
-    const trips = await Trip.find();
-    res.json({ allTrips: trips });
+    const lastTrip = await Trip.findOne().sort({ _id: -1 });
+    res.json({ lastTrip: lastTrip });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
