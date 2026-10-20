@@ -1,24 +1,77 @@
 var express = require('express');
 var router = express.Router();
+const Trip = require('../models/trips');
 
-let trips = [{ departure: 'Paris', arrival: 'Lyon' }, { departure: 'Lyon', arrival: 'Marseille' }];
+// Ajouter un trajet
+router.post('/trips', async (req, res) => {
+  try {
+    await Trip.create({
+      departure: req.body.departure,
+      arrival: req.body.arrival
+    });
 
-router.post('/trips', (req, res) => {
-  trips.push({ departure: req.body.departure, arrival: req.body.arrival });
-  res.json({ allTrips: trips });
+    const trips = await Trip.find();
+    res.json({ allTrips: trips });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-router.get('/trips', (req, res) => {
-  res.json({ allTrips: trips });
+// Récupérer tous les trajets
+router.get('/trips', async (req, res) => {
+  try {
+    const trips = await Trip.find();
+    res.json({ allTrips: trips });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-router.get('/lastTrip', (req, res) => {
-  res.json({ lastTrip: trips[trips.length - 1] });
+// Récupérer les trajets
+router.get('/lastTrip', async (req, res) => {
+  try {
+    const trips = await Trip.find();
+    res.json({ allTrips: trips });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-router.delete('/trips', (req, res) => {
-  trips = [];
-  res.json({ allTrips: trips });
+// Supprimer tous les trajets
+router.delete('/trips', async (req, res) => {
+  try {
+    await Trip.deleteMany({});
+
+    const trips = await Trip.find();
+    res.json({ allTrips: trips });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Modifier un trajet
+router.put('/trips/:id', async (req, res) => {
+  try {
+    const updatedTrip = await Trip.findByIdAndUpdate(
+      req.params.id,
+      {
+        departure: req.body.departure,
+        arrival: req.body.arrival
+      },
+      { returnDocument: 'after', runValidators: true }
+    );
+
+    if (!updatedTrip) {
+      return res.status(404).json({
+        error: 'Trajet introuvable'
+      });
+    }
+
+    const trips = await Trip.find();
+    res.json({ allTrips: trips });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = router;
