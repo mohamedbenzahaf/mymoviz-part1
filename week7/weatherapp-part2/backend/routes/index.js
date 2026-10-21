@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const fetch = require('node-fetch');
+const owmApiKey = 'A179bee55b87eaecd3908122a4353b76';
 
 let weather = [
   { cityName: "London", description: "cloudy", main: "clouds", tempMin: 12.95, tempMax: 17.39 },
@@ -20,19 +22,58 @@ let weather = [
 ];
 
 
-router.post('/weather', (req, res) => {
-  if (!weather.some(e => e.cityName.toLowerCase() === req.body.cityName.toLowerCase())) {
+router.post('/weather', async (req, res) => {
+  const cityName = req.body.cityName?.trim();
+
+  if (!cityName) {
+    return res.json({
+      result: false,
+      error: 'City name is required',
+    });
+  }
+
+  if (weather.some(e =>
+    e.cityName.toLowerCase() === cityName.toLowerCase()
+  )) {
+    return res.json({
+      result: false,
+      error: 'City already saved',
+    });
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${owmApiKey}&units=metric`
+    );
+
+    const apiData = await response.json();
+
+    if (!response.ok) {
+      return res.json({
+        result: false,
+        error: apiData.message || 'City not found',
+      });
+    }
+
     const newCity = {
-      cityName: req.body.cityName,
-      description: req.body.description,
-      tempMin: req.body.tempMin,
-      tempMax: req.body.tempMax,
+      cityName: apiData.name,
+      main: apiData.weather[0].main,
+      description: apiData.weather[0].description,
+      tempMin: apiData.main.temp_min,
+      tempMax: apiData.main.temp_max,
     };
 
     weather.push(newCity);
-    res.json({ result: true, weather: newCity });
-  } else {
-    res.json({ result: false, error: 'City already saved' });
+
+    return res.json({
+      result: true,
+      weather: newCity,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      result: false,
+      error: 'Weather service unavailable',
+    });
   }
 });
 
