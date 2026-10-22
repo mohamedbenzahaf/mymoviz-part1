@@ -1,0 +1,13 @@
+{
+  "name": "joitotheworld",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.3.0",
+    "joi": "^18.3.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
