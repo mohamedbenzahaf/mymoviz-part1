@@ -23,7 +23,8 @@ router.get('/new', async (req, res) => {
 res.json({
   result: true,
   gameId: game._id,
-  wordLength: word.length
+  wordLength: word.length,
+  word: word
 });
   } catch (error) {
     console.error('Erreur création partie :', error);

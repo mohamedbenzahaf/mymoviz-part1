@@ -5,48 +5,53 @@ const newGameButton = document.getElementById('newGame');
 const gameBoard = document.getElementById('game-board');
 const resultElement = document.getElementById('result');
 
+const MAX_ROWS = 6;
+const WORD_LENGTH = 5;
+
 let currentGameId = null;
+let secretWord = '';
 let currentGuess = '';
 let currentRow = 0;
 let gameOver = false;
-
-const MAX_ROWS = 6;
-const WORD_LENGTH = 5;
 let board = [];
 
-// Créer les 30 cases de la grille
 function createBoard() {
   gameBoard.innerHTML = '';
   board = [];
 
   for (let row = 0; row < MAX_ROWS; row++) {
+    const rowElement = document.createElement('div');
+    rowElement.className = 'letter-row';
+
     const rowCells = [];
 
     for (let col = 0; col < WORD_LENGTH; col++) {
       const cell = document.createElement('div');
-      cell.className = 'cell';
-      gameBoard.appendChild(cell);
+      cell.className = 'letter-box';
+
+      rowElement.appendChild(cell);
       rowCells.push(cell);
     }
 
+    gameBoard.appendChild(rowElement);
     board.push(rowCells);
   }
 }
 
-// Démarrer une nouvelle partie
 async function startNewGame() {
-  try {
-    newGameButton.disabled = true;
-    resultElement.textContent = 'Chargement de la partie...';
+  newGameButton.disabled = true;
+  resultElement.textContent = 'Loading...';
 
+  try {
     const response = await fetch(`${API_URL}/game/new`);
     const data = await response.json();
 
     if (!response.ok || !data.result) {
-      throw new Error(data.error || 'Impossible de créer une partie');
+      throw new Error(data.error || 'Unable to start a new game');
     }
 
     currentGameId = data.gameId;
+    secretWord = data.word ? data.word.toUpperCase() : '';
     gameIdElement.textContent = currentGameId;
 
     currentGuess = '';
@@ -54,26 +59,32 @@ async function startNewGame() {
     gameOver = false;
 
     createBoard();
-    resultElement.textContent = 'Tape un mot de 5 lettres.';
+    resultElement.textContent = '';
   } catch (error) {
     resultElement.textContent =
-      'Erreur : ' + error.message +
-      '. Vérifie que le backend fonctionne sur le port 3000.';
+      'Unable to start game. Check that the backend is running.';
+    console.error(error);
   } finally {
     newGameButton.disabled = false;
   }
 }
 
-// Afficher les lettres saisies dans la ligne actuelle
 function updateCurrentRow() {
+  if (currentRow >= MAX_ROWS) return;
+
   for (let col = 0; col < WORD_LENGTH; col++) {
-    board[currentRow][col].textContent = currentGuess[col] || '';
+    const cell = board[currentRow][col];
+
+    cell.textContent = currentGuess[col] || '';
+    cell.classList.toggle('filled-box', Boolean(currentGuess[col]));
   }
 }
 
-// Envoyer une proposition au backend
 async function submitGuess() {
-  if (gameOver || !currentGameId || currentGuess.length !== WORD_LENGTH) {
+  if (gameOver || !currentGameId) return;
+
+  if (currentGuess.length !== WORD_LENGTH) {
+    resultElement.textContent = 'Not enough letters !';
     return;
   }
 
@@ -92,54 +103,54 @@ async function submitGuess() {
     const data = await response.json();
 
     if (!response.ok || !data.result) {
-      resultElement.textContent = data.error || 'Erreur lors de la vérification.';
+      resultElement.textContent = data.error || 'Unable to check word.';
       return;
     }
 
     for (let col = 0; col < WORD_LENGTH; col++) {
-      const cell = board[currentRow][col];
-      cell.classList.add(data.feedback[col]);
+      board[currentRow][col].classList.add(data.feedback[col]);
     }
 
     if (data.won) {
-      resultElement.textContent = 'Bravo ! Tu as trouvé le mot ! 🎉';
+      resultElement.textContent = 'YOU WON!';
       gameOver = true;
     } else if (currentRow === MAX_ROWS - 1) {
-      resultElement.textContent = 'Partie terminée ! Clique sur NEW GAME pour rejouer.';
+      resultElement.textContent = 'GAME OVER';
       gameOver = true;
     } else {
-      resultElement.textContent = 'Essaie encore !';
+      resultElement.textContent = '';
+      currentRow++;
+      currentGuess = '';
     }
-
-    currentRow++;
-    currentGuess = '';
   } catch (error) {
-    resultElement.textContent =
-      'Impossible de contacter le serveur. Vérifie que le backend fonctionne.';
+    resultElement.textContent = 'Unable to contact the server.';
+    console.error(error);
   }
 }
 
-// Saisir un mot avec le clavier
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keyup', (event) => {
   if (gameOver || !currentGameId) return;
 
   if (event.key === 'Enter') {
     submitGuess();
-  } else if (event.key === 'Backspace') {
-    if (currentGuess.length > 0) {
-      currentGuess = currentGuess.slice(0, -1);
-      updateCurrentRow();
-    }
-  } else if (/^[a-zA-Z]$/.test(event.key) &&
-             currentGuess.length < WORD_LENGTH) {
+    return;
+  }
+
+  if (event.key === 'Backspace') {
+    currentGuess = currentGuess.slice(0, -1);
+    updateCurrentRow();
+    return;
+  }
+
+  if (/^[a-zA-Z]$/.test(event.key) &&
+      currentGuess.length < WORD_LENGTH) {
     currentGuess += event.key.toUpperCase();
     updateCurrentRow();
   }
 });
 
-// Bouton pour démarrer une partie
 newGameButton.addEventListener('click', startNewGame);
 
-// Construire la grille et lancer automatiquement la première partie
 createBoard();
 startNewGame();
+

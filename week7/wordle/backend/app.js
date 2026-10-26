@@ -27,6 +27,7 @@ mongoose.connect(process.env.MONGODB_URI)
   });
 
 app.use('/game', gameRouter);
+app.use('/games', gameRouter);
 
 // Ta connexion MongoDB reste ici
 module.exports = app;

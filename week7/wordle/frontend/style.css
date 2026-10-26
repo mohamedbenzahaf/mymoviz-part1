@@ -197,3 +197,65 @@ body {
   font-weight: 700;
 }
 
+
+/* Compatibilité avec les classes attendues par le challenge */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 58px);
+  gap: 5px;
+  justify-content: center;
+  margin: 24px auto;
+}
+
+.letter-row {
+  display: contents;
+}
+
+.letter-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 58px;
+  height: 58px;
+  border: 2px solid #878a8c;
+  background-color: #ffffff;
+  color: #222222;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.letter-box.filled-box {
+  border-color: #565758;
+}
+
+.letter-box.green {
+  background-color: #538D4E !important;
+  border-color: #538D4E !important;
+  color: #ffffff !important;
+}
+
+.letter-box.yellow {
+  background-color: #B59F3B !important;
+  border-color: #B59F3B !important;
+  color: #ffffff !important;
+}
+
+.letter-box.gray {
+  background-color: #787C7E !important;
+  border-color: #787C7E !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 480px) {
+  .letter-box {
+    width: 52px;
+    height: 52px;
+    font-size: 25px;
+  }
+
+  #game-board {
+    grid-template-columns: repeat(5, 52px);
+    gap: 4px;
+  }
+}
