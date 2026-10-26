@@ -3,23 +3,26 @@ var router = express.Router();
 // DO NOT EDIT OVER THIS LINE //
 
 
+
+const Todo = require('../models/todos');
+
 // ROUTE GET /todos
-//EXEMPLE DE RÉPONSE :
-// {
-//   "todos": [
-//     {"title": "Aller faire les courses", "priority": 2},
-//     {"title": "Faire mes flashcards", "priority": 1},
-//     {"title": "Faire une sieste", "priority": 3}
-//   ]
-// }
+router.get('/todos', async (req, res) => {
+const todos = await Todo.find({}, { __v: 0 });
 
-
+  res.json({ todos });
+});
 
 // ROUTE POST /todos
-//EXEMPLE DE RÉPONSE :
-// {
-//   "result": true
-// }
+router.post('/todos', async (req, res) => {
+  const { title, priority } = req.body;
+
+  const newTodo = new Todo({ title, priority });
+  await newTodo.save();
+
+  res.json({ result: true });
+});
+
 
 // DO NOT EDIT UNDER THIS LINE //
 module.exports = router;
