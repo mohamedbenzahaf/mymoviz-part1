@@ -10,7 +10,6 @@ body {
   color: #222222;
 }
 
-/* En-tête */
 #header {
   display: flex;
   justify-content: space-around;
@@ -41,7 +40,6 @@ body {
   overflow-wrap: anywhere;
 }
 
-/* Bouton nouvelle partie */
 #newGame {
   width: 100%;
   max-width: 200px;
@@ -64,7 +62,6 @@ body {
   cursor: wait;
 }
 
-/* Message du jeu */
 #result {
   min-height: 30px;
   margin: 20px 12px 0;
@@ -76,139 +73,17 @@ body {
   font-weight: bold;
 }
 
-/* Grille : 6 lignes et 5 colonnes */
 #game-board {
-  display: grid;
-  grid-template-columns: repeat(5, 58px);
-  grid-template-rows: repeat(6, 58px);
-  gap: 5px;
-  justify-content: center;
-  margin: 24px auto;
-}
-
-/* Cases individuelles */
-.cell {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 58px;
-  height: 58px;
-  border: 2px solid #878a8c;
-  background-color: #ffffff;
-  color: #222222;
-  font-size: 30px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-/* Lettre bien placée */
-#game-board .cell.green,
-#game-board .green {
-  background: #538D4E !important;
-  border: 2px solid #538D4E !important;
-  color: #ffffff !important;
-}
-
-/* Lettre présente mais mal placée */
-#game-board .cell.yellow {
-  background-color: #B59F3B !important;
-  border-color: #B59F3B !important;
-  color: #ffffff !important;
-}
-
-/* Lettre absente */
-#game-board .cell.gray {
-  background-color: #787C7E !important;
-  border-color: #787C7E !important;
-  color: #ffffff !important;
-}
-
-/* Résultat de victoire ou de défaite, si utilisé */
-.won {
-  color: #538D4E;
-}
-
-.loose {
-  color: #d32f2f;
-}
-
-#divResult {
-  text-align: center;
-}
-
-/* Adaptation aux petits écrans */
-@media (max-width: 480px) {
-  #header {
-    padding: 8px;
-    gap: 5px;
-  }
-
-  #title {
-    font-size: 25px;
-  }
-
-  .smallSection {
-    font-size: 11px;
-  }
-
-  #newGame {
-    font-size: 11px;
-    padding: 6px;
-  }
-
-  #game-board {
-    grid-template-columns: repeat(5, 52px);
-    grid-template-rows: repeat(6, 52px);
-    gap: 4px;
-  }
-
-  .cell {
-    width: 52px;
-    height: 52px;
-    font-size: 25px;
-  }
-
-  #result {
-    font-size: 16px;
-  }
-}
-/* Correction de l'affichage de la grille Wordle */
-#game-board {
-  display: grid !important;
-  grid-template-columns: repeat(5, 58px) !important;
-  grid-template-rows: repeat(6, 58px) !important;
-  gap: 5px !important;
-  justify-content: center;
-  margin: 24px auto;
-}
-
-#game-board .cell {
-  display: flex !important;
-  width: 58px !important;
-  height: 58px !important;
-  min-width: 58px;
-  min-height: 58px;
-  border: 2px solid #878a8c;
-  background-color: white;
-  color: #222;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  font-weight: 700;
-}
-
-
-/* Compatibilité avec les classes attendues par le challenge */
-#game-board {
-  display: grid;
-  grid-template-columns: repeat(5, 58px);
   gap: 5px;
-  justify-content: center;
   margin: 24px auto;
 }
 
 .letter-row {
-  display: contents;
+  display: flex;
+  gap: 5px;
 }
 
 .letter-box {
@@ -230,32 +105,61 @@ body {
 }
 
 .letter-box.green {
-  background-color: #538D4E !important;
-  border-color: #538D4E !important;
-  color: #ffffff !important;
+  background-color: #538D4E;
+  border-color: #538D4E;
+  color: #ffffff;
 }
 
 .letter-box.yellow {
-  background-color: #B59F3B !important;
-  border-color: #B59F3B !important;
-  color: #ffffff !important;
+  background-color: #B59F3B;
+  border-color: #B59F3B;
+  color: #ffffff;
 }
 
 .letter-box.gray {
-  background-color: #787C7E !important;
-  border-color: #787C7E !important;
-  color: #ffffff !important;
+  background-color: #787C7E;
+  border-color: #787C7E;
+  color: #ffffff;
 }
 
 @media (max-width: 480px) {
+  #header {
+    padding: 8px;
+    gap: 5px;
+  }
+
+  #title {
+    font-size: 25px;
+  }
+
+  .smallSection {
+    font-size: 11px;
+  }
+
+  #newGame {
+    font-size: 11px;
+    padding: 6px;
+  }
+
   .letter-box {
     width: 52px;
     height: 52px;
     font-size: 25px;
   }
 
-  #game-board {
-    grid-template-columns: repeat(5, 52px);
+  .letter-row {
     gap: 4px;
   }
+
+  #result {
+    font-size: 16px;
+  }
+}
+
+.won {
+  color: #538D4E;
+}
+
+.loose {
+  color: #d32f2f;
 }
