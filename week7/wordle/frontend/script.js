@@ -9,11 +9,11 @@ const MAX_ROWS = 6;
 const WORD_LENGTH = 5;
 
 let currentGameId = null;
-let secretWord = '';
 let currentGuess = '';
 let currentRow = 0;
 let gameOver = false;
 let board = [];
+let isSubmitting = false;
 
 function createBoard() {
   gameBoard.innerHTML = '';
@@ -40,10 +40,10 @@ function createBoard() {
 
 async function startNewGame() {
   newGameButton.disabled = true;
-  resultElement.textContent = 'Loading...';
+  resultElement.textContent = '';
 
   try {
-    const response = await fetch(`${API_URL}/game/new`);
+    const response = await fetch(`${API_URL}/games/new`);
     const data = await response.json();
 
     if (!response.ok || !data.result) {
@@ -51,18 +51,17 @@ async function startNewGame() {
     }
 
     currentGameId = data.gameId;
-    secretWord = data.word ? data.word.toUpperCase() : '';
     gameIdElement.textContent = currentGameId;
 
     currentGuess = '';
     currentRow = 0;
     gameOver = false;
+    isSubmitting = false;
 
     createBoard();
     resultElement.textContent = '';
   } catch (error) {
-    resultElement.textContent =
-      'Unable to start game. Check that the backend is running.';
+    resultElement.textContent = 'Unable to start a new game.';
     console.error(error);
   } finally {
     newGameButton.disabled = false;
@@ -76,17 +75,24 @@ function updateCurrentRow() {
     const cell = board[currentRow][col];
 
     cell.textContent = currentGuess[col] || '';
-    cell.classList.toggle('filled-box', Boolean(currentGuess[col]));
+
+    if (currentGuess[col]) {
+      cell.classList.add('filled-box');
+    } else {
+      cell.classList.remove('filled-box');
+    }
   }
 }
 
 async function submitGuess() {
-  if (gameOver || !currentGameId) return;
+  if (gameOver || !currentGameId || isSubmitting) return;
 
   if (currentGuess.length !== WORD_LENGTH) {
     resultElement.textContent = 'Not enough letters !';
     return;
   }
+
+  isSubmitting = true;
 
   try {
     const response = await fetch(`${API_URL}/game/guess`, {
@@ -103,7 +109,8 @@ async function submitGuess() {
     const data = await response.json();
 
     if (!response.ok || !data.result) {
-      resultElement.textContent = data.error || 'Unable to check word.';
+      resultElement.textContent =
+        data.error || 'Unable to check word.';
       return;
     }
 
@@ -118,18 +125,20 @@ async function submitGuess() {
       resultElement.textContent = 'GAME OVER';
       gameOver = true;
     } else {
-      resultElement.textContent = '';
       currentRow++;
       currentGuess = '';
+      resultElement.textContent = '';
     }
   } catch (error) {
     resultElement.textContent = 'Unable to contact the server.';
     console.error(error);
+  } finally {
+    isSubmitting = false;
   }
 }
 
 document.addEventListener('keyup', (event) => {
-  if (gameOver || !currentGameId) return;
+  if (gameOver || !currentGameId || isSubmitting) return;
 
   if (event.key === 'Enter') {
     submitGuess();
