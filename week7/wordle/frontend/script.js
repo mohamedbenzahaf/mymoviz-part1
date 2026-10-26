@@ -6,16 +6,15 @@ const gameBoard = document.getElementById('game-board');
 const resultElement = document.getElementById('result');
 
 const MAX_ROWS = 6;
-const WORD_LENGTH = 5;
 
 let currentGameId = null;
+let secretWord = '';
 let currentGuess = '';
 let currentRow = 0;
 let gameOver = false;
 let board = [];
-let isSubmitting = false;
 
-function createBoard() {
+function createBoard(wordLength) {
   gameBoard.innerHTML = '';
   board = [];
 
@@ -25,10 +24,9 @@ function createBoard() {
 
     const rowCells = [];
 
-    for (let col = 0; col < WORD_LENGTH; col++) {
+    for (let col = 0; col < wordLength; col++) {
       const cell = document.createElement('div');
       cell.className = 'letter-box';
-
       rowElement.appendChild(cell);
       rowCells.push(cell);
     }
@@ -51,15 +49,13 @@ async function startNewGame() {
     }
 
     currentGameId = data.gameId;
-    gameIdElement.textContent = currentGameId;
-
+    secretWord = data.word.toUpperCase();
     currentGuess = '';
     currentRow = 0;
     gameOver = false;
-    isSubmitting = false;
 
-    createBoard();
-    resultElement.textContent = '';
+    gameIdElement.textContent = currentGameId;
+    createBoard(data.wordLength);
   } catch (error) {
     resultElement.textContent = 'Unable to start a new game.';
     console.error(error);
@@ -71,77 +67,71 @@ async function startNewGame() {
 function updateCurrentRow() {
   if (currentRow >= MAX_ROWS) return;
 
-  for (let col = 0; col < WORD_LENGTH; col++) {
+  for (let col = 0; col < board[currentRow].length; col++) {
     const cell = board[currentRow][col];
-
     cell.textContent = currentGuess[col] || '';
-
-    if (currentGuess[col]) {
-      cell.classList.add('filled-box');
-    } else {
-      cell.classList.remove('filled-box');
-    }
+    cell.classList.toggle('filled-box', Boolean(currentGuess[col]));
   }
 }
 
-async function submitGuess() {
-  if (gameOver || !currentGameId || isSubmitting) return;
+function checkGuess() {
+  const guess = currentGuess.toUpperCase();
+  const target = secretWord.toUpperCase();
 
-  if (currentGuess.length !== WORD_LENGTH) {
-    resultElement.textContent = 'Not enough letters !';
+  const feedback = Array(target.length).fill('gray');
+  const remaining = target.split('');
+
+  // Première passe : lettres bien placées.
+  for (let i = 0; i < target.length; i++) {
+    if (guess[i] === target[i]) {
+      feedback[i] = 'green';
+      remaining[i] = null;
+    }
+  }
+
+  // Deuxième passe : lettres présentes mais mal placées.
+  for (let i = 0; i < target.length; i++) {
+    if (feedback[i] === 'green') continue;
+
+    const index = remaining.indexOf(guess[i]);
+
+    if (index !== -1) {
+      feedback[i] = 'yellow';
+      remaining[index] = null;
+    }
+  }
+
+  for (let i = 0; i < feedback.length; i++) {
+    board[currentRow][i].classList.add(feedback[i]);
+  }
+
+  if (guess === target) {
+    resultElement.textContent = 'YOU WON!';
+    gameOver = true;
     return;
   }
 
-  isSubmitting = true;
-
-  try {
-    const response = await fetch(`${API_URL}/game/guess`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        gameId: currentGameId,
-        guess: currentGuess
-      })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok || !data.result) {
-      resultElement.textContent =
-        data.error || 'Unable to check word.';
-      return;
-    }
-
-    for (let col = 0; col < WORD_LENGTH; col++) {
-      board[currentRow][col].classList.add(data.feedback[col]);
-    }
-
-    if (data.won) {
-      resultElement.textContent = 'YOU WON!';
-      gameOver = true;
-    } else if (currentRow === MAX_ROWS - 1) {
-      resultElement.textContent = 'GAME OVER';
-      gameOver = true;
-    } else {
-      currentRow++;
-      currentGuess = '';
-      resultElement.textContent = '';
-    }
-  } catch (error) {
-    resultElement.textContent = 'Unable to contact the server.';
-    console.error(error);
-  } finally {
-    isSubmitting = false;
+  if (currentRow === MAX_ROWS - 1) {
+    resultElement.textContent = 'GAME OVER';
+    gameOver = true;
+    return;
   }
+
+  currentRow++;
+  currentGuess = '';
+  resultElement.textContent = '';
 }
 
 document.addEventListener('keyup', (event) => {
-  if (gameOver || !currentGameId || isSubmitting) return;
+  if (gameOver || !currentGameId) return;
 
   if (event.key === 'Enter') {
-    submitGuess();
+    if (currentGuess.length !== secretWord.length) {
+      resultElement.textContent = 'Not enough letters !';
+      return;
+    }
+
+    checkGuess();
     return;
   }
 
@@ -152,7 +142,7 @@ document.addEventListener('keyup', (event) => {
   }
 
   if (/^[a-zA-Z]$/.test(event.key) &&
-      currentGuess.length < WORD_LENGTH) {
+      currentGuess.length < secretWord.length) {
     currentGuess += event.key.toUpperCase();
     updateCurrentRow();
   }
@@ -160,6 +150,5 @@ document.addEventListener('keyup', (event) => {
 
 newGameButton.addEventListener('click', startNewGame);
 
-createBoard();
+createBoard(5);
 startNewGame();
-
