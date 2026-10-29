@@ -7,6 +7,7 @@ require('./models/connection');
 
 var indexRouter = require('./routes/index');
 var weatherRouter = require('./routes/weather');
+var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -21,5 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/weather', weatherRouter);
+app.use('/users', usersRouter);
 
 module.exports = app;
+
