@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
@@ -24,7 +23,7 @@ router.get('/byTimestamp/:timestamp', (req, res) => {
     .filter(product =>
       product.batches.some(batch =>
         batch.recall === true &&
-        moment(batch.expirationDate).valueOf() === timestamp
+        moment.utc(batch.expirationDate).valueOf() === timestamp
       )
     )
     .map(product => product.id);
@@ -33,3 +32,4 @@ router.get('/byTimestamp/:timestamp', (req, res) => {
 });
 
 module.exports = router;
+
