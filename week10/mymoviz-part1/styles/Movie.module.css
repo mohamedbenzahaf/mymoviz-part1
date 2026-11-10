@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  width: 450px;
+  height: 200px;
+  margin: 15px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image {
+  width: 130px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  flex: 1;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #021334;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  flex: 1;
+}
+
+.vote {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #f1c40f;
+  font-size: 14px;
+}
