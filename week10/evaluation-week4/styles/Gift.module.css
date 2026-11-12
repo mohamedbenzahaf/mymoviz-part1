@@ -1,0 +1,35 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.card:hover {
+    scale: 1.05;
+    transition: all 0.1s ease-in-out;
+}
+.cardHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #282b28;
+}
+.image {
+    width: 250px;
+    height: 350px;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.price {
+    padding: 0.3rem 0.5rem;
+    border-radius: 14px;
+    background-color: #D6E5E3;
+    color: #282b28;
+
+}
