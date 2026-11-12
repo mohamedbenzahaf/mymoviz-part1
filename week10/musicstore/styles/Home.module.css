@@ -1,22 +1,347 @@
-.main {
+.container {
+  width: 100%;
+  color: #111;
+  font-family: 'Montserrat', 'Avenir Next', Arial, Helvetica, sans-serif;
+}
+
+.container,
+.container * {
+  box-sizing: border-box;
+}
+
+/* HERO (image plein écran, header par-dessus) */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.heroContent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 6.5% 60px 5%;
+}
+
+.heroContent > div:first-child {
+  margin-bottom: -12px;
+}
+
+.heroLabel {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 2px;
+}
+
+.heroTitle {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+/* HEADER (transparent) */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background: transparent;
+  color: #fff;
+  z-index: 10;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0.55em;
+}
+
+.icons {
+  display: flex;
+  gap: 40px;
+}
+
+.icon {
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+}
+
+/* BOUTONS DU HERO */
+.buttons {
+  display: flex;
+  gap: 40px;
+}
+
+.discover,
+.buy {
+  width: 150px;
+  padding: 14px 0;
+  text-align: center;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.discover {
+  background: #fff;
+  color: #111;
+}
+
+.buy {
+  background: transparent;
+  color: #fff;
+}
+
+.discover:hover {
+  background: transparent;
+  color: #fff;
+}
+
+.buy:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* SOUNDBAR */
+.soundbar {
+  width: 100%;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
+  text-align: center;
+  padding: 40px 20px 66px;
 }
 
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
+.soundbarLabel {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0 0 4px;
 }
 
-.title a {
-  color: #0070f3;
+.soundbarTitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 67px;
+}
+
+.soundbar img {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  background-color: #f4f4f4;
+  margin: 0 0 63px;
+}
+
+.soundbar a {
+  display: inline-block;
+  width: 150px;
+  padding: 13px 0;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-decoration: none;
+  transition: opacity 0.3s;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.soundbar a:hover {
+  opacity: 0.8;
 }
+
+/* PRODUITS */
+.products {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 0 55px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  background: #fff;
+}
+
+.product {
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.product img {
+  display: block;
+  width: 620px;
+  max-width: none;
+  height: 484px;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.productInfo {
+  padding: 0 30px 31px;
+}
+
+.productName {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0 0 4px;
+}
+
+.productTagline {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+
+.productInfo a {
+  display: inline-block;
+  width: 150px;
+  padding: 13px 0;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.productInfo a:hover {
+  opacity: 0.8;
+}
+
+/* FOOTER */
+.footer {
+  width: 100%;
+  height: 154px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #000;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: opacity 0.3s;
+}
+
+.footer a:hover {
+  opacity: 0.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .header {
+    height: 70px;
+  }
+
+  .logo {
+    font-size: 16px;
+    letter-spacing: 0.3em;
+  }
+
+  .icons {
+    gap: 18px;
+  }
+
+  .hero {
+    min-height: 500px;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 0 7% 8%;
+  }
+
+  .heroContent > div:first-child {
+    margin-bottom: 0;
+  }
+
+  .heroLabel {
+    font-size: 14px;
+  }
+
+  .heroTitle {
+    font-size: 26px;
+  }
+
+  .buttons {
+    gap: 16px;
+  }
+
+  .discover,
+  .buy {
+    width: 130px;
+    padding: 12px 0;
+    font-size: 12px;
+  }
+
+  .soundbar {
+    padding: 30px 20px 40px;
+  }
+
+  .soundbarTitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  .soundbar img {
+    margin-bottom: 30px;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .product img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+  }
+
+  .footer {
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+    padding: 40px 20px;
+  }
+}
+ 
