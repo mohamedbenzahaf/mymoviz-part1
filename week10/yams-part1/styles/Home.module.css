@@ -1,22 +1,61 @@
 .main {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  padding: 4rem 0;
+  background-color: #fffff5;
 }
 
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.triangles {
+  display: flex;
+  flex-direction: column;
+  width: 29vw;
+  height: 100vh;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.left,
+.right {
+  flex: 1;
+}
+
+.left {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.right {
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.black {
+  background-color: #000;
+}
+
+.red {
+  background-color: #692422;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70vh;
+  height: 70vh;
+  border-radius: 50%;
+  background-color: #3a5230;
+  border: 1px solid #000;
+}
+
+.diceContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
 }

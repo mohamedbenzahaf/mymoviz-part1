@@ -1,0 +1,5 @@
+.dice {
+  width: 8vh;
+  height: 8vh;
+  object-fit: contain;
+}
