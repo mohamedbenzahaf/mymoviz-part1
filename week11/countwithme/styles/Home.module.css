@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.logo {
+  width: 400px;
+}
+
+.incrementBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  font-family: roboto;
+  font-size: 26px;
+  text-align: center;
+  border: 1px #80271A solid;
+  background-color: white;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.incrementBtn:hover {
+  background-color: #80271A;
+}
+
+.decrementBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  font-family: roboto;
+  font-size: 26px;
+  text-align: center;
+  border: 1px #F6C249 solid;
+  background-color: white;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.decrementBtn:hover {
+  background-color: #F6C249;
+}
+
+.counter {
+  font-size: 34px;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  margin: 0;
+}
