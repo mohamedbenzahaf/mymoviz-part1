@@ -20,9 +20,10 @@ function Home() {
 
   // relance uniquement le dé à l'index cliqué
   const handleRoll = (index) => {
+    const newValue = randomValue();
     setDicesData((prev) =>
       prev.map((dice, i) =>
-        i === index ? { value: randomValue(), count: dice.count + 1 } : dice
+        i === index ? { value: newValue, count: dice.count + 1 } : dice
       )
     );
   };
