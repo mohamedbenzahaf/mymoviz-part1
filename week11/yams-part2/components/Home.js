@@ -12,7 +12,7 @@ function Home() {
   const handleLaunch = () => {
     const initial = Array.from({ length: 5 }, () => ({
       value: randomValue(),
-      count: 1,
+      count: 0,
     }));
     setDicesData(initial);
     setStarted(true);
