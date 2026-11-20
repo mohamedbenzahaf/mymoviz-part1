@@ -5,7 +5,6 @@ import styles from '../styles/Movie.module.css';
 
 function Movie(props) {
   const [watchCount, setWatchCount] = useState(0);
-  const [like, setLike] = useState(false);
   const [personalNote, setPersonalNote] = useState(0);
 
   // Average evaluation
@@ -27,12 +26,12 @@ function Movie(props) {
     videoIconStyle = { 'color': '#e74c3c', 'cursor': 'pointer' };
   }
 
-  // Like movie
+  // Like movie : on renvoie le titre au parent (inverse data flow)
   const handleLikeMovie = () => {
-    setLike(!like);
+    props.updateLikedMovies(props.title);
   };
   let heartIconStyle = { 'cursor': 'pointer' };
-  if (like) {
+  if (props.isLiked) {
     heartIconStyle = { 'color': '#e74c3c', 'cursor': 'pointer' };
   }
 

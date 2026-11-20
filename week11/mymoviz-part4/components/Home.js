@@ -1,9 +1,23 @@
+import { useState } from 'react';
 import Movie from './Movie';
 import 'antd/dist/antd.css';
 import styles from '../styles/Home.module.css';
 import { Popover, Button } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
+  const [likedMovies, setLikedMovies] = useState([]);
+
+  // Ajoute le film s'il n'est pas liké, le retire sinon
+  const updateLikedMovies = (movieTitle) => {
+    if (likedMovies.includes(movieTitle)) {
+      setLikedMovies(likedMovies.filter(movie => movie !== movieTitle));
+    } else {
+      setLikedMovies([...likedMovies, movieTitle]);
+    }
+  };
+
   const moviesData = [
     { title: 'Forrest Gump', poster: 'forrestgump.jpg', voteAverage: 9.2, voteCount: 22_705, overview: 'A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case.' },
     { title: 'The Dark Knight', poster: 'thedarkknight.jpg', voteAverage: 8.5, voteCount: 27_547, overview: 'Batman raises the stakes in his war on crime and sets out to dismantle the remaining criminal organizations that plague the streets.' },
@@ -13,15 +27,37 @@ function Home() {
   ];
 
   const movies = moviesData.map((data, i) => {
-    return <Movie key={i} title={data.title} overview={data.overview} poster={data.poster} voteAverage={data.voteAverage} voteCount={data.voteCount} />;
+    const isLiked = likedMovies.includes(data.title);
+    return (
+      <Movie
+        key={i}
+        title={data.title}
+        overview={data.overview}
+        poster={data.poster}
+        voteAverage={data.voteAverage}
+        voteCount={data.voteCount}
+        updateLikedMovies={updateLikedMovies}
+        isLiked={isLiked}
+      />
+    );
+  });
+
+  const likedMoviesPopover = likedMovies.map((data, i) => {
+    return (
+      <div key={i} className={styles.likedMoviesContainer}>
+        <span className="likedMovie">{data}</span>
+        <FontAwesomeIcon
+          className={styles.crossIcon}
+          icon={faCircleXmark}
+          onClick={() => updateLikedMovies(data)}
+        />
+      </div>
+    );
   });
 
   const popoverContent = (
     <div className={styles.popoverContent}>
-      <span>Movie 1</span>
-      <span>Movie 2</span>
-      <span>Movie 3</span>
-      <span>Movie 4</span>
+      {likedMoviesPopover}
     </div>
   );
 
@@ -33,7 +69,7 @@ function Home() {
           <img className={styles.logo} src="logoletter.png" alt="Letter logo" />
         </div>
         <Popover title="Liked movies" content={popoverContent} className={styles.popover} trigger="click">
-          <Button>♥ 4 movie(s)</Button>
+          <Button>♥ {likedMovies.length} movie(s)</Button>
         </Popover>
       </div>
       <div className={styles.title}>LAST RELEASES</div>
