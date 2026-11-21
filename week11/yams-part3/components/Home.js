@@ -3,15 +3,32 @@ import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 
 function Home() {
-  const [launched, setLaunched] = useState(false);
+  // Chaque dé : { value: 1-6, count: nombre de relances individuelles }
+  const [dices, setDices] = useState([]);
 
-  const dices = [];
-  if (launched) {
-    for (let i = 0; i < 5; i++) {
-      const randomNumber = Math.floor(Math.random() * 6) + 1;
-      dices.push(<Dice key={i} number={randomNumber} />);
+  const rollDice = () => Math.floor(Math.random() * 6) + 1;
+
+  // Bouton "launch" : relance tous les dés (les crée au premier lancer)
+  const launchAll = () => {
+    if (dices.length === 0) {
+      setDices(Array.from({ length: 5 }, () => ({ value: rollDice(), count: 0 })));
+    } else {
+      setDices(dices.map(dice => ({ value: rollDice(), count: dice.count })));
     }
-  }
+  };
+
+  // Inverse data flow : appelée par un Dice, relance uniquement ce dé
+  const rollOne = (index) => {
+    setDices(dices.map((dice, i) =>
+      i === index ? { value: rollDice(), count: dice.count + 1 } : dice
+    ));
+  };
+
+  const total = dices.reduce((sum, dice) => sum + dice.value, 0);
+
+  const diceComponents = dices.map((dice, i) => (
+    <Dice key={i} index={i} number={dice.value} count={dice.count} rollOne={rollOne} />
+  ));
 
   return (
     <div className={styles.container}>
@@ -23,9 +40,10 @@ function Home() {
       <div className={styles.middleSection}>
         <img src="logo.png" alt="Logo" className={styles.logo} />
         <div className={styles.board}>
-          {dices}
+          {diceComponents}
         </div>
-        {!launched && <button className={styles.launchBtn} onClick={() => setLaunched(true)}>Launch</button>}
+        <span id="total">{total}</span>
+        <button className={styles.launchBtn} onClick={launchAll}>Launch</button>
       </div>
       <div>
         <div className={styles.triangleRight}></div>
