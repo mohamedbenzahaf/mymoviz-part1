@@ -1,0 +1,14 @@
+.container {
+	height: 92vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.background {
+	position: absolute;
+	color: lightblue;
+	opacity: 0.3;
+	font-size: 240px;
+	z-index: -1;
+}
