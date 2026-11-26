@@ -4,7 +4,6 @@ import { Popover, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Movie from './Movie';
-import 'antd/dist/antd.css';
 import styles from '../styles/Home.module.css';
 
 function Home() {
@@ -65,7 +64,7 @@ function Home() {
     </div>
   );
 
-  // Affichage de la liste des films
+  // Affichage des films
   const movies = moviesData.map((data, i) => {
     const isLiked = likedMovies.some(movie => movie === data.title);
 
@@ -115,3 +114,4 @@ function Home() {
 }
 
 export default Home;
+

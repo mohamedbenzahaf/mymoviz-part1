@@ -1,11 +1,13 @@
+
 import '../styles/globals.css';
+import 'antd/dist/antd.css';
 import Head from 'next/head';
 
 function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Next.js App</title>
+        <title>MyMoviz</title>
       </Head>
       <Component {...pageProps} />
     </>
@@ -13,3 +15,4 @@ function App({ Component, pageProps }) {
 }
 
 export default App;
+
