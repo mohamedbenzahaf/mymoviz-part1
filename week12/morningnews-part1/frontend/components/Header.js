@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -50,8 +51,8 @@ function Header() {
 			</div>
 
 			<div className={styles.linkContainer}>
-				<span className={styles.link}>Articles</span>
-				<span className={styles.link}>Bookmarks</span>
+				<Link href="/"><span className={styles.link}>Articles</span></Link>
+				<Link href="/bookmarks"><span className={styles.link}>Bookmarks</span></Link>
 			</div>
 
 			{isModalVisible && <div id="react-modals">
