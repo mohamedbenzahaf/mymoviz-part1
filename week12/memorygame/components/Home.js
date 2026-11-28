@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from './Card';
 import styles from '../styles/Home.module.css';
 
@@ -22,13 +22,61 @@ function Home() {
     { id: 16, name: 'sunglasses', image: '/sunglasses.svg' },
   ];
 
-  const [selected, setSelected] = useState([]);
+  const [cards, setCards] = useState([]);       // les 16 cartes mélangées
+  const [selected, setSelected] = useState([]); // les 2 cartes retournées en cours
+  const [found, setFound] = useState([]);       // les cartes des paires trouvées
 
+  // Mélange un tableau avec Math.random()
+  const shuffle = (array) => {
+    return [...array].sort(() => Math.random() - 0.5);
+  };
+
+  // 1. À l'arrivée sur la page : on mélange les cartes
+  useEffect(() => {
+    setCards(shuffle(deck));
+  }, []);
+
+  // 2. Clic sur une carte (appelé depuis Card : inverse data flow)
   const selectCard = (id) => {
+    // on bloque si 2 cartes sont déjà retournées, ou si la carte est déjà visible
+    if (selected.length === 2 || selected.includes(id) || found.includes(id)) {
+      return;
+    }
     setSelected([...selected, id]);
   };
 
-  const cardsToDisplay = deck.map((card) => {
+  // 3. Quand 2 cartes sont retournées : on compare
+  useEffect(() => {
+    if (selected.length !== 2) {
+      return;
+    }
+
+    const firstCard = cards.find((card) => card.id === selected[0]);
+    const secondCard = cards.find((card) => card.id === selected[1]);
+
+    if (firstCard.name === secondCard.name) {
+      // identiques : elles restent visibles
+      setFound([...found, firstCard.id, secondCard.id]);
+      setSelected([]);
+    } else {
+      // différentes : on les retourne après 1 seconde
+      const timer = setTimeout(() => setSelected([]), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [selected]);
+
+  // 4. Fin de partie : toutes les paires trouvées
+  useEffect(() => {
+    if (found.length === 16) {
+      const timer = setTimeout(() => {
+        setFound([]);
+        setCards(shuffle(deck));
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [found]);
+
+  const cardsToDisplay = cards.map((card) => {
     return (
       <Card
         key={card.id}
@@ -36,7 +84,7 @@ function Home() {
         name={card.name}
         image={card.image}
         selectCard={selectCard}
-        selected={selected.includes(card.id)}
+        selected={selected.includes(card.id) || found.includes(card.id)}
       />
     );
   });
