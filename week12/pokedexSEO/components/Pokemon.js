@@ -1,4 +1,5 @@
 import styles from '../styles/Pokemon.module.css'
+import Image from 'next/image'
 
 function Pokemon(props) {
 	let pokemonTypeStyle = {}
@@ -50,8 +51,11 @@ function Pokemon(props) {
 	return (
 		<div className={styles.pokemon} style={pokemonTypeStyle}>
 			<div className={styles.imgContainer}>
-				<img
+				<Image
 					src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`}
+					width={100}
+					height={100}
+					alt="pokemon"
 				/>
 			</div>
 			<div className={styles.info}>

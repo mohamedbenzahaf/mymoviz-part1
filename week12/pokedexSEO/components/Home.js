@@ -33,14 +33,16 @@ function Home() {
 	}, [])
 
 	const pokemons = pokemonsData.map(data => {
-		return <Pokemon id={data.id} name={data.name} type={data.type} />
+		return <Pokemon key={data.id} id={data.id} name={data.name} type={data.type} />
 	})
 
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.title}>Pokedex</h1>
 			<div className={styles.pokemonContainer}>{pokemons}</div>
-			<input type='button' value='Next' onClick={() => fetchPokemons()} className={styles.next} />
+			<button type="button" onClick={() => fetchPokemons()} className={styles.next}>
+				Next
+			</button>
 		</div>
 	)
 }
