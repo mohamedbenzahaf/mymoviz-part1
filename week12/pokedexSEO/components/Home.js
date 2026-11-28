@@ -40,11 +40,11 @@ function Home() {
 	return (
 		<div className={styles.container}>
 			<Head>
-				<title>Pokedex</title>
-				<link rel="icon" href="/favicon.ico" />
-				<meta name="description" content="pokedex description" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-			</Head>
+	<title>Pokedex</title>
+	<link rel="icon" href="/favicon.ico" />
+	<meta name="description" content="pokedex description" />
+	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+</Head>
 			<h1 className={styles.title}>Pokedex</h1>
 			<div className={styles.pokemonContainer}>{pokemons}</div>
 			<button type="button" onClick={() => fetchPokemons()} className={styles.next}>
