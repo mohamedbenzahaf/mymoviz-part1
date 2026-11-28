@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Head from 'next/head'
 import Pokemon from './Pokemon'
 import styles from '../styles/Home.module.css'
 
@@ -38,6 +39,12 @@ function Home() {
 
 	return (
 		<div className={styles.container}>
+			<Head>
+				<title>Pokedex</title>
+				<link rel="icon" href="/favicon.ico" />
+				<meta name="description" content="pokedex description" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+			</Head>
 			<h1 className={styles.title}>Pokedex</h1>
 			<div className={styles.pokemonContainer}>{pokemons}</div>
 			<button type="button" onClick={() => fetchPokemons()} className={styles.next}>
